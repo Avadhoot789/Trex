@@ -31,10 +31,11 @@ function preload(){
   
   gameOverImg = loadImage("gameOver.png");
   restartImg = loadImage("restart.png");
+  backgroundIMG = loadImage("original.png")
 }
 
 function setup() {
-  createCanvas(600, 200);
+  createCanvas(displayWidth - 220, displayHeight - 220);
   
   trex = createSprite(50,180,20,50);
   
@@ -70,9 +71,11 @@ function setup() {
 
 function draw() {
   //trex.debug = true;
-  background("white");
+  background(backgroundIMG);
   text("Score: "+ score, 500,50);
   
+  camera.position.x=trex.x;
+
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
